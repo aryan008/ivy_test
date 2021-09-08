@@ -13,8 +13,9 @@ from .filters import OrderFilter
 # Create your views here.
 
 def registerPage(request):
-    if request.user is_authenticated:
+    if request.user.is_authenticated:
         return redirect("home")
+    else:
         form = CreateUserForm()
 
         if request.method=="POST":
@@ -30,8 +31,9 @@ def registerPage(request):
         return render(request, 'accounts/register.html', context)
 
 def loginPage(request):
-    if request.user is_authenticated:
+    if request.user.is_authenticated:
         return redirect("home")
+    else:
         if request.method=="POST":
             username = request.POST.get("username")
             password = request.POST.get("password")
